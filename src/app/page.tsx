@@ -3,8 +3,8 @@ import { Container } from "@/components"
 
 export default function Home() {
 	return (
-		<main className="flex h-screen flex-col items-center justify-between bg-red-100 relative">
-			<div className="border-2 border-red-400 w-full h-full">
+		<main className="relative">
+			<div className="w-full h-full fixed left-0 top-0 bg-red-100">
 				<Container />
 			</div>
 		</main>
