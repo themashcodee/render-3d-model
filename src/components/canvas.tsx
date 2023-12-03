@@ -1,24 +1,20 @@
 "use client"
-import React, { ReactNode, Suspense } from "react"
-import { Box } from "./test"
-import { Canvas, useFrame } from "@react-three/fiber"
-import { Model } from "./model"
-// import Asset from "../assets/scene.gltf"
+import React, { Suspense, lazy } from "react"
+import { Canvas } from "@react-three/fiber"
+import { OrbitControls } from "@react-three/drei"
+const ModelComponent = lazy(() => import("./model"))
 
-type Props = {
-	// children: ReactNode
-}
-
-export const Container = (props: Props) => {
+export const Container = () => {
 	return (
-		<Suspense fallback={null}>
-			<Canvas style={{ height: "100%", width: "100%" }}>
-				<ambientLight />
+		<Suspense fallback={"loading"}>
+			<Canvas
+				style={{ height: "100%", width: "100%" }}
+				camera={{ position: [1, 5, 10] }}
+			>
+				<ambientLight intensity={5} />
 				<pointLight position={[10, 10, 10]} />
-				{/* <Box position={[-1.2, 0, 0]} /> */}
-				{/* <Box position={[1.2, 0, 0]} /> */}
-				{/* <Model path={Asset} /> */}
-				<Model path="/scene.gltf" />
+				<ModelComponent path="/plant/scene.gltf" />
+				<OrbitControls minDistance={0.5} maxDistance={2} />
 			</Canvas>
 		</Suspense>
 	)
